@@ -1,0 +1,18 @@
+diff --git iocAdmin/Db/ioc.template iocAdmin/Db/ioc.template
+index eaa06ab..86c7a34 100644
+--- iocAdmin/Db/ioc.template
++++ iocAdmin/Db/ioc.template
+@@ -334,13 +334,6 @@ record(stringin, "$(IOCNAME):UPTIME") {
+   field(PINI, "YES")
+ }
+ 
+-record(stringin, "$(IOCNAME):ENGINEER") {
+-  field(DESC, "Engineer")
+-  field(DTYP, "IOC stats")
+-  field(INP, "@engineer")
+-  field(PINI, "YES")
+-}
+-
+ record(stringin, "$(IOCNAME):LOCATION") {
+   field(DESC, "Location")
+   field(DTYP, "IOC stats")

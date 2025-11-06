@@ -1,0 +1,2 @@
+
+dbLoadRecords("iocAdminSoft-ess.db", "IOC=$(IOCNAME)")

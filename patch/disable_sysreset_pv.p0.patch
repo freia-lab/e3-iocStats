@@ -1,0 +1,20 @@
+diff --git devIocStats/devIocStatsSub.c devIocStats/devIocStatsSub.c
+index c43b556..b50692a 100644
+--- devIocStats/devIocStatsSub.c
++++ devIocStats/devIocStatsSub.c
+@@ -62,14 +62,7 @@
+ =======================================================*/
+ static long rebootProc(struct subRecord *psub)
+ {
+-  if ((psub->a < 0.5) && (psub->b < 0.5) &&
+-      (psub->c < 0.5) && (psub->d < 0.5) &&
+-      (psub->e < 0.5) && (psub->f < 0.5) &&
+-      (psub->l > 0.5)) {
+-     epicsPrintf("IOC reboot started\n");
+-     epicsThreadSleep(1.0);
+-     reboot((int)(psub->g + 0.1));
+-  }
++  errlogPrintf("IOCs must not be restarted using the SYSRESET PV. Please contact the e3 team for more information.\n");
+   return(0);
+ }
+ /*====================================================

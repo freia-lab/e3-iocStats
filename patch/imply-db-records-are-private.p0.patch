@@ -1,0 +1,292 @@
+diff --git iocAdmin/Db/ioc.template iocAdmin/Db/ioc.template
+index eaa06ab..9102e04 100644
+--- iocAdmin/Db/ioc.template
++++ iocAdmin/Db/ioc.template
+@@ -13,14 +13,14 @@ record(mbbo, "$(IOCNAME):ACCESS")
+   field(THSV, "MAJOR")
+   info(autosaveFields, "VAL")
+ }
+-record(stringin, "$(IOCNAME):STARTTOD")
++record(stringin, "$(IOCNAME):#STARTTOD")
+ {
+     field(DESC, "Time and date of startup")
+     field(DTYP, "Soft Timestamp")
+     field(PINI, "YES")
+     field(INP, "@$(TODFORMAT)")
+ }
+-record(stringin, "$(IOCNAME):TOD")
++record(stringin, "$(IOCNAME):#TOD")
+ {
+     field(DESC, "Current time and date")
+     field(DTYP, "Soft Timestamp")
+@@ -65,7 +65,7 @@ record(sub, "$(IOCNAME):SYSRESET")
+     field(L,"1")
+ }
+ 
+-record(ai, "$(IOCNAME):CA_CLNT_CNT") {
++record(ai, "$(IOCNAME):#CA_CLNT_CNT") {
+   field(DESC, "Number of CA Clients")
+   field(SCAN, "I/O Intr")
+   field(DTYP, "IOC stats")
+@@ -78,7 +78,7 @@ record(ai, "$(IOCNAME):CA_CLNT_CNT") {
+   info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+ }
+ 
+-record(ai, "$(IOCNAME):CA_CONN_CNT") {
++record(ai, "$(IOCNAME):#CA_CONN_CNT") {
+   field(DESC, "Number of CA Connections")
+   field(SCAN, "I/O Intr")
+   field(DTYP, "IOC stats")
+@@ -91,21 +91,21 @@ record(ai, "$(IOCNAME):CA_CONN_CNT") {
+   info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+ }
+ 
+-record(ai, "$(IOCNAME):RECORD_CNT") {
++record(ai, "$(IOCNAME):#RECORD_CNT") {
+   field(DESC, "Number of Records")
+   field(PINI, "YES")
+   field(DTYP, "IOC stats")
+   field(INP, "@records")
+ }
+ 
+-record(ai, "$(IOCNAME):FD_MAX") {
++record(ai, "$(IOCNAME):#FD_MAX") {
+   field(DESC, "Max File Descriptors")
+   field(PINI, "YES")
+   field(DTYP, "IOC stats")
+   field(INP, "@maxfd")
+ }
+ 
+-record(ai, "$(IOCNAME):FD_CNT") {
++record(ai, "$(IOCNAME):#FD_CNT") {
+   field(DESC, "Allocated File Descriptors")
+   field(SCAN, "I/O Intr")
+   field(DTYP, "IOC stats")
+@@ -113,7 +113,7 @@ record(ai, "$(IOCNAME):FD_CNT") {
+   field(INP, "@fd")
+ }
+ 
+-record(calc, "$(IOCNAME):FD_FREE") {
++record(calc, "$(IOCNAME):#FD_FREE") {
+   field(DESC, "Available FDs")
+   field(CALC, "B>0?B-A:C")
+   field(INPA, "$(IOCNAME):FD_CNT  NPP MS")
+@@ -127,7 +127,7 @@ record(calc, "$(IOCNAME):FD_FREE") {
+   info(autosaveFields_pass0, "HOPR LOPR LOW LOLO LSV LLSV")
+ }
+ 
+-record(ai, "$(IOCNAME):SYS_CPU_LOAD") {
++record(ai, "$(IOCNAME):#SYS_CPU_LOAD") {
+   field(DESC, "System CPU Load")
+   field(SCAN, "I/O Intr")
+   field(DTYP, "IOC stats")
+@@ -142,7 +142,7 @@ record(ai, "$(IOCNAME):SYS_CPU_LOAD") {
+   info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+ }
+ 
+-record(ai, "$(IOCNAME):IOC_CPU_LOAD") {
++record(ai, "$(IOCNAME):#IOC_CPU_LOAD") {
+   alias("$(IOCNAME):LOAD")
+   field(DESC, "IOC CPU Load")
+   field(SCAN, "I/O Intr")
+@@ -158,14 +158,14 @@ record(ai, "$(IOCNAME):IOC_CPU_LOAD") {
+   info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+ }
+ 
+-record(ai, "$(IOCNAME):CPU_CNT") {
++record(ai, "$(IOCNAME):#CPU_CNT") {
+   field(DESC, "Number of CPUs")
+   field(DTYP, "IOC stats")
+   field(INP, "@no_of_cpus")
+   field(PINI, "YES")
+ }
+ 
+-record(ai, "$(IOCNAME):SUSP_TASK_CNT") {
++record(ai, "$(IOCNAME):#SUSP_TASK_CNT") {
+   field(DESC, "Number Suspended Tasks")
+   field(SCAN, "I/O Intr")
+   field(DTYP, "IOC stats")
+@@ -175,7 +175,7 @@ record(ai, "$(IOCNAME):SUSP_TASK_CNT") {
+   info(autosaveFields_pass0, "HOPR LOPR HIHI HIGH LOW LOLO HHSV HSV LSV LLSV")
+ }
+ 
+-record(ai, "$(IOCNAME):MEM_USED") {
++record(ai, "$(IOCNAME):#MEM_USED") {
+   field(DESC, "Allocated Memory")
+   field(SCAN, "I/O Intr")
+   field(DTYP, "IOC stats")
+@@ -183,7 +183,7 @@ record(ai, "$(IOCNAME):MEM_USED") {
+   field(EGU, "byte")
+ }
+ 
+-record(ai, "$(IOCNAME):MEM_FREE") {
++record(ai, "$(IOCNAME):#MEM_FREE") {
+   field(DESC, "Free Memory")
+   field(SCAN, "I/O Intr")
+   field(DTYP, "IOC stats")
+@@ -194,7 +194,7 @@ record(ai, "$(IOCNAME):MEM_FREE") {
+   info(autosaveFields_pass0, "HOPR LOPR LOW LOLO LSV LLSV")
+ }
+ 
+-record(ai, "$(IOCNAME):MEM_MAX") {
++record(ai, "$(IOCNAME):#MEM_MAX") {
+   field(DESC, "Maximum Memory")
+   field(SCAN, "I/O Intr")
+   field(DTYP, "IOC stats")
+@@ -202,7 +202,7 @@ record(ai, "$(IOCNAME):MEM_MAX") {
+   field(EGU, "byte")
+ }
+ 
+-record(ao, "$(IOCNAME):CA_UPD_TIME") {
++record(ao, "$(IOCNAME):#CA_UPD_TIME") {
+   field(DESC, "CA Check Update Period")
+   field(DTYP, "IOC stats")
+   field(OUT, "@ca_scan_rate")
+@@ -214,7 +214,7 @@ record(ao, "$(IOCNAME):CA_UPD_TIME") {
+   field(PINI, "YES")
+ }
+ 
+-record(ao, "$(IOCNAME):FD_UPD_TIME") {
++record(ao, "$(IOCNAME):#FD_UPD_TIME") {
+   field(DESC, "FD Check Update Period")
+   field(DTYP, "IOC stats")
+   field(OUT, "@fd_scan_rate")
+@@ -226,7 +226,7 @@ record(ao, "$(IOCNAME):FD_UPD_TIME") {
+   field(PINI, "YES")
+ }
+ 
+-record(ao, "$(IOCNAME):LOAD_UPD_TIME") {
++record(ao, "$(IOCNAME):#LOAD_UPD_TIME") {
+   field(DESC, "CPU Check Update Period")
+   field(DTYP, "IOC stats")
+   field(OUT, "@cpu_scan_rate")
+@@ -238,7 +238,7 @@ record(ao, "$(IOCNAME):LOAD_UPD_TIME") {
+   field(PINI, "YES")
+ }
+ 
+-record(ao, "$(IOCNAME):MEM_UPD_TIME") {
++record(ao, "$(IOCNAME):#MEM_UPD_TIME") {
+   field(DESC, "Memory Check Update Period")
+   field(DTYP, "IOC stats")
+   field(OUT, "@memory_scan_rate")
+@@ -273,7 +273,7 @@ record(waveform, "$(IOCNAME):ST_SCRIPT") {
+   field(PINI, "YES")
+ }
+ 
+-record(stringin, "$(IOCNAME):KERNEL_VERS") {
++record(stringin, "$(IOCNAME):#KERNEL_VERS") {
+   field(DESC, "Kernel Version")
+   field(DTYP, "IOC stats")
+   field(INP, "@kernel_ver")
+@@ -303,21 +303,21 @@ record(stringin, "$(IOCNAME):HOSTNAME") {
+   field(PINI, "YES")
+ }
+ 
+-record(stringin, "$(IOCNAME):APP_DIR1") {
++record(stringin, "$(IOCNAME):#APP_DIR1") {
+   field(DESC, "Application Directory Part 1")
+   field(DTYP, "IOC stats")
+   field(INP, "@pwd1")
+   field(PINI, "YES")
+ }
+ 
+-record(stringin, "$(IOCNAME):APP_DIR2") {
++record(stringin, "$(IOCNAME):#APP_DIR2") {
+   field(DESC, "Application Directory Part 2")
+   field(DTYP, "IOC stats")
+   field(INP, "@pwd2")
+   field(PINI, "YES")
+ }
+ 
+-record(waveform, "$(IOCNAME):APP_DIR") {
++record(waveform, "$(IOCNAME):#APP_DIR") {
+   field(DESC, "Application Directory")
+   field(DTYP, "IOC stats")
+   field(INP, "@pwd")
+@@ -362,27 +362,27 @@ record(ai, "$(IOCNAME):PARENT_ID") {
+   field(INP, "@parent_proc_id")
+ }
+ 
+-record(ai, "$(IOCNAME):SCANONCE_Q_SIZE") {
++record(ai, "$(IOCNAME):#SCANONCE_Q_SIZE") {
+   field(DESC, "max # entries in IOC scanOnce queue")
+   field(DTYP, "IOC stats")
+   field(INP,  "@scanOnceQueueSize")
+   field(PINI, "YES")
+ }
+-record(ai, "$(IOCNAME):CB_Q_SIZE") {
++record(ai, "$(IOCNAME):#CB_Q_SIZE") {
+   field(DESC, "max # entries in IOC callback queues")
+   field(DTYP, "IOC stats")
+   field(INP,  "@cbQueueSize")
+   field(PINI, "YES")
+ }
+ 
+-substitute "QUEUE=scanOnce, QUEUE_CAPS=SCANONCE, QUEUE_TYPE=SCANONCE"
++substitute "QUEUE=scanOnce, QUEUE_CAPS=#SCANONCE, QUEUE_TYPE=#SCANONCE"
+ include "iocQueue.db"
+ 
+-substitute "QUEUE=cbLow, QUEUE_CAPS=CBLOW, QUEUE_TYPE=CB"
++substitute "QUEUE=cbLow, QUEUE_CAPS=#CBLOW, QUEUE_TYPE=#CB"
+ include "iocQueue.db"
+ 
+-substitute "QUEUE=cbMedium, QUEUE_CAPS=CBMEDIUM, QUEUE_TYPE=CB"
++substitute "QUEUE=cbMedium, QUEUE_CAPS=#CBMEDIUM, QUEUE_TYPE=#CB"
+ include "iocQueue.db"
+ 
+-substitute "QUEUE=cbHigh, QUEUE_CAPS=CBHIGH, QUEUE_TYPE=CB"
++substitute "QUEUE=cbHigh, QUEUE_CAPS=#CBHIGH, QUEUE_TYPE=#CB"
+ include "iocQueue.db"
+diff --git iocAdmin/Db/iocGeneralTime.template iocAdmin/Db/iocGeneralTime.template
+index 2f3e002..69a1817 100644
+--- iocAdmin/Db/iocGeneralTime.template
++++ iocAdmin/Db/iocGeneralTime.template
+@@ -1,4 +1,4 @@
+-record(ai, "$(IOCNAME):GTIM_TIME") {
++record(ai, "$(IOCNAME):#GTIM_TIME") {
+   field(DESC, "Gen Time Secs since 1990")
+   field(SCAN, "1 second")
+   field(DTYP, "General Time")
+@@ -7,7 +7,7 @@ record(ai, "$(IOCNAME):GTIM_TIME") {
+   field(EGU,  "sec")
+ }
+ 
+-record(bo, "$(IOCNAME):GTIM_RESET") {
++record(bo, "$(IOCNAME):#GTIM_RESET") {
+   field(DESC, "Gen Time Error Reset")
+   field(DTYP, "General Time")
+   field(OUT,  "@RSTERRCNT")
+@@ -15,7 +15,7 @@ record(bo, "$(IOCNAME):GTIM_RESET") {
+   field(ONAM, "Reset")
+ }
+ 
+-record(longin, "$(IOCNAME):GTIM_ERR_CNT") {
++record(longin, "$(IOCNAME):#GTIM_ERR_CNT") {
+   field(DESC, "Gen Time Error Count")
+   field(DTYP, "General Time")
+   field(INP,  "@GETERRCNT")
+@@ -24,21 +24,21 @@ record(longin, "$(IOCNAME):GTIM_ERR_CNT") {
+   field(HHSV, "MAJOR")
+ }
+ 
+-record(stringin, "$(IOCNAME):GTIM_CUR_SRC") {
++record(stringin, "$(IOCNAME):#GTIM_CUR_SRC") {
+   field(DESC, "Gen Time Current Provider")
+   field(DTYP, "General Time")
+   field(INP,  "@BESTTCP")
+   field(SCAN, "1 second")
+ }
+ 
+-record(stringin, "$(IOCNAME):GTIM_EVT_SRC") {
++record(stringin, "$(IOCNAME):#GTIM_EVT_SRC") {
+   field(DESC, "Gen Time Event Provider")
+   field(DTYP, "General Time")
+   field(INP,  "@BESTTEP")
+   field(SCAN, "1 second")
+ }
+ 
+-record(stringin, "$(IOCNAME):GTIM_HI_SRC") {
++record(stringin, "$(IOCNAME):#GTIM_HI_SRC") {
+   field(DESC, "Gen Time Highest Provider")
+   field(DTYP, "General Time")
+   field(INP,  "@TOPTCP")

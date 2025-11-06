@@ -1,0 +1,12 @@
+diff --git iocAdmin/Db/ioc.template iocAdmin/Db/ioc.template
+index eaa06ab..e7ba676 100644
+--- iocAdmin/Db/ioc.template
++++ iocAdmin/Db/ioc.template
+@@ -58,7 +58,6 @@ record( sub, "$(IOCNAME):READACF")
+ }
+ record(sub, "$(IOCNAME):SYSRESET")
+ {
+-    alias("$(IOCNAME):SysReset")
+     field(DESC, "IOC Restart" )
+     field(SNAM, "rebootProc")
+     field(BRSV,"INVALID")
