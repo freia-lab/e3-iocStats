@@ -11,7 +11,7 @@ file ioc-unpatched.template
 pattern { IOCNAME , TODFORMAT           }
 	{ "$(IOC)"  , "%Y-%m-%d %H:%M:%S" }
 }
-file iocGeneralTime.template
+file iocGeneralTime-unpatched.template
 {
 pattern { IOCNAME }
 	{ "$(IOC)"  }
