@@ -1,1 +1,7 @@
 # Add any module-specific rules here
+.PHONY: db
+db: conf
+	$(QUIET) $(E3_MODULE_MAKE_CMDS) db
+
+.PHONY: hdrs
+hdrs:
