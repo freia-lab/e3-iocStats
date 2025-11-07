@@ -1,0 +1,14 @@
+#==============================================================================
+#
+# Abs:  IOC Administration Records for Soft IOCs
+#
+# Name: iocAdminSoft-freia-host.substitutions
+#
+#==============================================================================
+#
+file ioc-host-unpatched.template
+{
+pattern { IOCNAME , TODFORMAT           }
+	{ "$(IOC)"  , "%Y-%m-%d %H:%M:%S" }
+}
+
