@@ -1,0 +1,2 @@
+
+dbLoadRecords("iocAdminSoft-freia-proc.db", "IOC=$(IOCNAME)")

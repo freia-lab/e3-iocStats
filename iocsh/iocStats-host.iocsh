@@ -1,0 +1,2 @@
+
+dbLoadRecords("iocAdminSoft-freia-host.db", "IOC=$(HOSTNAME)")

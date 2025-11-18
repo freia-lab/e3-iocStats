@@ -79,7 +79,7 @@ SCRIPTS += $(IOCADMINSRC)/iocReleaseCreateDb.py
 # DBDS      += $(IOCADMINSRC)/iocAdmin.dbd
 
 
-SCRIPTS += ../iocsh/iocStats.iocsh
+SCRIPTS += $(wildcard ../iocsh/*.iocsh)
 
 
 TEMPLATES += $(wildcard $(IOCADMINDB)/*.db)
