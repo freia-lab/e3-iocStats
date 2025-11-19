@@ -2,18 +2,13 @@
 #
 # Abs:  IOC Administration Records for Soft IOCs
 #
-# Name: iocAdminSoft-freia-proc.substitutions
+# Name: iocAdminSoft-freia-host.substitutions
 #
 #==============================================================================
 #
-file ioc-proc-unpatched-limited.template
+file ioc-host-unpatched-limited.template
 {
 pattern { IOCNAME , TODFORMAT           }
 	{ "$(IOC)"  , "%Y-%m-%d %H:%M:%S" }
 }
 
-file iocEnvVar.template
-{
-pattern { IOCNAME, ENVNAME      , ENVVAR                          , ENVTYPE}
-	{ "$(IOC)" , TZ     	  , EPICS_TZ                  	    , epics  }
-}
