@@ -1,0 +1,103 @@
+diff --git iocAdmin/Db/ioc-host-unpatched-limited.template iocAdmin/Db/ioc-host-unpatched-limited.template
+new file mode 100644
+index 0000000..114e9a9
+--- /dev/null
++++ iocAdmin/Db/ioc-host-unpatched-limited.template
+@@ -0,0 +1,25 @@
++
++record(ao, "$(IOCNAME):LOAD_UPD_TIME") {
++  field(DESC, "CPU Check Update Period")
++  field(DTYP, "IOC stats")
++  field(OUT, "@cpu_scan_rate")
++  field(EGU, "sec")
++  field(DRVH, "60")
++  field(DRVL, "1")
++  field(HOPR, "60")
++  field(VAL, "10")
++  field(PINI, "YES")
++}
++
++record(ao, "$(IOCNAME):MEM_UPD_TIME") {
++  field(DESC, "Memory Check Update Period")
++  field(DTYP, "IOC stats")
++  field(OUT, "@memory_scan_rate")
++  field(EGU, "sec")
++  field(DRVH, "60")
++  field(DRVL, "1")
++  field(HOPR, "60")
++  field(VAL, "10")
++  field(PINI, "YES")
++}
++
+diff --git iocAdmin/Db/ioc-proc-unpatched-limited.template iocAdmin/Db/ioc-proc-unpatched-limited.template
+new file mode 100644
+index 0000000..12acf15
+--- /dev/null
++++ iocAdmin/Db/ioc-proc-unpatched-limited.template
+@@ -0,0 +1,66 @@
++record(sub, "$(IOCNAME):SYSRESET")
++{
++    alias("$(IOCNAME):SysReset")
++    field(DESC, "IOC Restart" )
++    field(SNAM, "rebootProc")
++    field(BRSV,"INVALID")
++    field(L,"1")
++}
++
++record(ao, "$(IOCNAME):CA_UPD_TIME") {
++  field(DESC, "CA Check Update Period")
++  field(DTYP, "IOC stats")
++  field(OUT, "@ca_scan_rate")
++  field(EGU, "sec")
++  field(DRVH, "60")
++  field(DRVL, "1")
++  field(HOPR, "60")
++  field(VAL, "15")
++  field(PINI, "YES")
++}
++
++record(ao, "$(IOCNAME):FD_UPD_TIME") {
++  field(DESC, "FD Check Update Period")
++  field(DTYP, "IOC stats")
++  field(OUT, "@fd_scan_rate")
++  field(EGU, "sec")
++  field(DRVH, "60")
++  field(DRVL, "1")
++  field(HOPR, "60")
++  field(VAL, "20")
++  field(PINI, "YES")
++}
++
++record(waveform, "$(IOCNAME):ST_SCRIPT") {
++  field(DESC, "Startup Script")
++  field(DTYP, "IOC stats")
++  field(INP, "@startup_script")
++  field(NELM, "120")
++  field(FTVL, "CHAR")
++  field(PINI, "YES")
++}
++
++record(ai, "$(IOCNAME):SCANONCE_Q_SIZE") {
++  field(DESC, "max # entries in IOC scanOnce queue")
++  field(DTYP, "IOC stats")
++  field(INP,  "@scanOnceQueueSize")
++  field(PINI, "YES")
++}
++record(ai, "$(IOCNAME):CB_Q_SIZE") {
++  field(DESC, "max # entries in IOC callback queues")
++  field(DTYP, "IOC stats")
++  field(INP,  "@cbQueueSize")
++  field(PINI, "YES")
++}
++
++substitute "QUEUE=scanOnce, QUEUE_CAPS=SCANONCE, QUEUE_TYPE=SCANONCE"
++include "iocQueue.db"
++
++substitute "QUEUE=cbLow, QUEUE_CAPS=CBLOW, QUEUE_TYPE=CB"
++include "iocQueue.db"
++
++substitute "QUEUE=cbMedium, QUEUE_CAPS=CBMEDIUM, QUEUE_TYPE=CB"
++include "iocQueue.db"
++
++substitute "QUEUE=cbHigh, QUEUE_CAPS=CBHIGH, QUEUE_TYPE=CB"
++include "iocQueue.db"

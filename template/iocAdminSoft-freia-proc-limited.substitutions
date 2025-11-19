@@ -1,0 +1,14 @@
+#==============================================================================
+#
+# Abs:  IOC Administration Records for Soft IOCs
+#
+# Name: iocAdminSoft-freia-proc.substitutions
+#
+#==============================================================================
+#
+
+file iocEnvVar.template
+{
+pattern { IOCNAME, ENVNAME      , ENVVAR                          , ENVTYPE}
+	{ "$(IOC)" , TZ     	  , EPICS_TZ                  	    , epics  }
+}
