@@ -31,17 +31,17 @@ index 0000000..114e9a9
 +
 diff --git iocAdmin/Db/ioc-proc-unpatched-limited.template iocAdmin/Db/ioc-proc-unpatched-limited.template
 new file mode 100644
-index 0000000..12acf15
+index 0000000..cec3da1
 --- /dev/null
 +++ iocAdmin/Db/ioc-proc-unpatched-limited.template
 @@ -0,0 +1,66 @@
-+record(sub, "$(IOCNAME):SYSRESET")
-+{
-+    alias("$(IOCNAME):SysReset")
-+    field(DESC, "IOC Restart" )
-+    field(SNAM, "rebootProc")
-+    field(BRSV,"INVALID")
-+    field(L,"1")
++
++record(stringin, "$(IOCNAME):UPTIME") {
++  field(DESC, "Elapsed Time since Start")
++  field(SCAN, "1 second")
++  field(DTYP, "IOC stats")
++  field(INP, "@up_time")
++  field(PINI, "YES")
 +}
 +
 +record(ao, "$(IOCNAME):CA_UPD_TIME") {
